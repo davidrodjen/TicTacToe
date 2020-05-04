@@ -3,8 +3,11 @@ package com.example.tictactoe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     // Make a field
@@ -13,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Player x;
     private Player o;
     public Player currPlayer;
+    private TextView playerTurn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
         //Add method to onCreate
         initializeButtons();
 
+        //Have to find the current player
+        playerTurn = findViewById(R.id.playerTurn);
+
+        //initialize the game
+        initializeGame();
     }
 
 
@@ -42,12 +51,41 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
-    private void intializeGame(){
+    private void initializeGame(){
         o = new Player("X");
         x = new Player("O");
 
-        currPlayer = getPlayer();
-
         displayCurrentPlayer();
     }
+
+    public void clickNewGame(View v) {
+        for (int i = 0; i < buttonAry.length; i++) {
+            buttonAry[i].setText("");
+        }
+    }
+
+    public void onClick(View v){
+        for (int i = 0; i < buttonAry.length; i++) {
+            if (v == buttonAry[i] && buttonAry[i].getText() == "") {
+                buttonAry[i].setText(currPlayer.playerName);
+                alternatePlayer();
+            }
+        }
+    }
+
+    private void displayCurrentPlayer(){
+        playerTurn.setText("Player: " + currPlayer.playerName + "'s Turn");
+    }
+
+    private void alternatePlayer() {
+        if (currPlayer == x) {
+            currPlayer = o;
+        }
+        else {
+            currPlayer = x;
+        }
+        displayCurrentPlayer();
+    }
+
+
 }
