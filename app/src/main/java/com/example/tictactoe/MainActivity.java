@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    //Make a field for button Array
+    // Make a field
+    // For button Array
     private Button[] buttonAry;
+    private Player x;
+    private Player o;
+    public Player currPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,14 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.button8),
             findViewById(R.id.button9)
         };
+    }
 
+    private void intializeGame(){
+        o = new Player("X");
+        x = new Player("O");
 
+        currPlayer = getPlayer();
+
+        displayCurrentPlayer();
     }
 }
