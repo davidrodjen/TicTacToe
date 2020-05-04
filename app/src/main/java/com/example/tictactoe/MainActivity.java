@@ -7,10 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    // Make a field
+    // Field
     // For button Array
     private Button[] buttonAry;
     private Player x;
@@ -52,22 +51,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeGame(){
-        o = new Player("X");
-        x = new Player("O");
+        o = new Player("O");
+        x = new Player("X");
 
+        currPlayer = o;
         displayCurrentPlayer();
     }
 
     public void clickNewGame(View v) {
-        for (int i = 0; i < buttonAry.length; i++) {
-            buttonAry[i].setText("");
+        for (Button button : buttonAry) {
+            button.setText("");
         }
     }
 
     public void onClick(View v){
-        for (int i = 0; i < buttonAry.length; i++) {
-            if (v == buttonAry[i] && buttonAry[i].getText() == "") {
-                buttonAry[i].setText(currPlayer.playerName);
+        for (Button button : buttonAry) {
+            if (v == button && button.getText() == "") {
+                button.setText(currPlayer.playerName);
                 alternatePlayer();
             }
         }
