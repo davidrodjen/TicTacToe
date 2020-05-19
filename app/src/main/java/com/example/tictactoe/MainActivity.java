@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
     // Field
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         o = new Player("O");
         x = new Player("X");
 
-        currPlayer = o;
+        currPlayer = getPlayer();
         displayCurrentPlayer();
     }
 
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         for (Button button : buttonAry) {
             button.setText("");
         }
+        initializeGame();
     }
 
     public void onClick(View v){
@@ -87,5 +90,16 @@ public class MainActivity extends AppCompatActivity {
         displayCurrentPlayer();
     }
 
-
+    // Generate a number to represent a player
+    private Player getPlayer()
+    {
+        Random rand = new Random();
+        int num = rand.nextInt(2);
+        if (num == 0) {
+            return x;
+        }
+        else {
+            return o;
+        }
+    }
 }
